@@ -32,6 +32,10 @@
 (assert-ses 0 '(0) '(a) '(a))
 (assert-ses 7 '(1 0 0 1 1 -1 -1 -1 0 1) '(a b d e 2 f) '(0 a b 1 c f g))
 
+(assert-lcs '() '() '())
+(assert-lcs '() '(0) '())
+(assert-lcs '() '() '(0))
+(assert-lcs '() '(0) '(1))
 (assert-lcs '(a b) '(a b c) '(a b a))
 (assert-lcs '(a b a d) '(a b a c d) '(a e b a d))
 (assert-lcs '(#\a #\b) '(#\a #\b #\c) '(#\A #\B #\A) char-ci=?)
@@ -51,11 +55,19 @@
             '(#\" #\t #\* #\m #\o #\1 #\K #\e #\g #\w #\7 #\* #\> #\< #\, #\t #\~ #\. #\p #\& #\! #\: #\i #\{ #\* #\) #\S #\1 #\z #\9 #\r #\Q #\? #\* #\0 #\a #\= #\Y #\v #\P #\` #\$ #\S #\\ #\Y #\" #\H #\; #\d #\4 #\2 #\4 #\` #\I #\f #\space #\b #\b #\o #\H #\' #\t #\P #\E #\2 #\y #\z #\S #\b #\C #\2 #\{ #\~ #\x #\7 #\X #\~ #\9 #\F #\= #\X #\^ #\3 #\6 #\k #\' #\C #\P #\~ #\: #\L #\Z #\A #\V #\# #\} #\K #\: #\L #\~ #\0 #\d #\h #\E #\y #\O #\1 #\h #\w #\i #\l #\O #\R #\A #\w #\1 #\$ #\| #\J #\K #\q #\y #\g #\, #\5 #\9 #\? #\z #\Z #\U #\8 #\: #\h #\P #\P #\y #\_ #\q #\( #\/ #\C #\i #\u #\: #\J #\s #\< #\X #\z #\r #\j #\f #\; #\! #\C #\f #\C #\+ #\i #\@ #\E #\H #\B #\N #\{ #\; #\@ #\_ #\| #\| #\D #\0 #\H #\7 #\n #\2 #\M #\^ #\% #\U #\k #\+ #\@ #\i #\C #\H #\/ #\/ #\5 #\? #\> #\+ #\C #\% #\P #\P #\+ #\x #\O #\()
             '(#\+ #\p #\# #\D #\2 #\7 #\U #\/ #\v #\j #\m #\S #\$ #\5 #\z #\O #\C #\z #\} #\@ #\u #\3 #\* #\1 #\/ #\- #\space #\s #\w #\2 #\] #\E #\space #\1 #\N #\5 #\& #\a #\m #\z #\^ #\= #\b #\z #\; #\7 #\S #\O #\G #\{ #\c #\v #\_ #\T #\D #\l #\f #\| #\5 #\! #\% #\z #\v #\o #\6 #\f #\[ #\y #\. #\j #\e #\W #\o #\8 #\6 #\2 #\8 #\) #\- #\c #\" #\N #\b #\> #\n #\m #\V #\R #\3 #\V #\: #\n #\h #\o #\5 #\q #\i #\Y #\V #\Z #\w #\} #\F #\/ #\` #\e #\m #\} #\1 #\6 #\- #\5 #\8 #\' #\I #\, #\A #\d #\z #\3 #\- #\3 #\; #\E #\u #\\ #\H #\O #\] #\m #\} #\4 #\: #\z #\1 #\) #\Y #\f #\. #\M #\( #\j #\M #\D #\Q #\4 #\] #\> #\, #\' #\l #\Z #\v #\| #\n #\* #\d #\| #\o #\L #\\ #\C #\R #\: #\{ #\2 #\a #\c #\< #\t #\^ #\$ #\J #\Q #\S #\= #\1 #\/ #\} #\B #\3 #\V #\m #\v #\8 #\' #\W #\' #\O #\0 #\E #\7 #\x #\r #\" #\D #\T #\f #\' #\f))
 
+(assert-lcs-with-positions '(0 ()) '() '())
+(assert-lcs-with-positions '(0 ()) '(0) '())
+(assert-lcs-with-positions '(0 ()) '() '(0))
+(assert-lcs-with-positions '(0 ()) '(0) '(1))
 (assert-lcs-with-positions '(1 ((a 0 0))) '(a) '(a))
 (assert-lcs-with-positions '(2 ((a 1 2) (b 2 3))) '(x a b y) '(p q a b))
 (assert-lcs-with-positions '(2 ((a 1 1) (b 2 3))) '(x a b y) '(p a q b))
 (assert-lcs-with-positions '(0 ()) '(x y) '(p q))
 
+(assert-lcs-edit-list '() '() '())
+(assert-lcs-edit-list '(((- 0 0))) '(0) '())
+(assert-lcs-edit-list '(((+ 0 0))) '() '(0))
+(assert-lcs-edit-list '(((+ 0 1) (- 0 0))) '(0) '(1))
 (assert-lcs-edit-list
  '(((- 0 "A"))
    ((+ 2 "D"))
