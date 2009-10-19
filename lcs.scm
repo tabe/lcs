@@ -62,10 +62,10 @@
                  (y2 (fp-ref (+ k 1)))
                  (y (max y1 y2)))
             (cond ((> y1 y2)
-                   (path-set! k (map values (path-ref (- k 1))))
+                   (path-set! k (path-ref (- k 1)))
                    (path-push! k u))
                   (else
-                   (path-set! k (map values (path-ref (+ k 1))))
+                   (path-set! k (path-ref (+ k 1)))
                    (path-push! k (- u))))
             (let loop ((x (- y k))
                        (y y))
